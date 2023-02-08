@@ -4,24 +4,26 @@ using UnityEngine;
 
 public class CubeManMove : MonoBehaviour
 {
-    [SerializeField] 
-    private Animator playerAnimator;
-    [SerializeField] 
-    private float WalkSpeed;
-    private float animationSpeed;
+    public Animator Ani;
 
-    private void Update()
+    private string ANI_WAVE = "Wave";
+    private string ANI_WALK = "Walk";
+    private string ANI_IDLE = "Idle";
+
+    void Update()
     {
-        float input = Input.GetAxisRaw("Horizontal");
-
-        if (input > 0)
+        
+        if (Input.GetKey(KeyCode.RightArrow)) //walk
         {
-            playerAnimator.SetFloat("WalkSpeed", Time.deltaTime);
+            Ani.Play(ANI_WALK);
         }
-        if (input < 0)
+        else if (Input.GetKey(KeyCode.W)) //Wave
         {
-            playerAnimator.SetFloat("WalkSpeed", Time.deltaTime);
+            Ani.Play(ANI_WAVE);
+        }
+        else                        //Idle
+        {
+            Ani.Play(ANI_IDLE);
         }
     }
-   
 }
